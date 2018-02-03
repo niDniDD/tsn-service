@@ -1,0 +1,25 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.download._id ? 'Edit Download' : 'New Download'}}</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="vm.form.downloadForm" class="form-horizontal" ng-submit="vm.save(vm.form.downloadForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="title">Title</label>
+          <input name="title" type="text" ng-model="vm.download.title" id="title" class="form-control" placeholder="Title" required>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="url">Url For Download</label>
+          <input name="url" type="text" ng-model="vm.download.url" id="url" class="form-control" placeholder="Url For Download" required>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">{{vm.download._id ? 'Update' : 'Create'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

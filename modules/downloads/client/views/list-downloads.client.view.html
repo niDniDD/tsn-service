@@ -1,0 +1,22 @@
+<section>
+  <div class="page-header">
+    <h1>Downloads</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="download in vm.downloads"
+       ui-sref="downloads.view({ downloadId: download._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="download.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="download.user" ng-bind="download.user.displayName"></span>
+        <span ng-if="!download.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="download.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.downloads.$resolved && !vm.downloads.length">
+    No Downloads yet, why don't you <a ui-sref="downloads.create">create one</a>?
+  </div>
+</section>
