@@ -64,7 +64,8 @@ exports.list = function (req, res) {
 
 exports.uploadImage = function (req, res) {
   var message = null;
-  var cloudImageURL = 'data:image/jpg;base64,' + req.body.data;
+  var cloudImageURL = req.body.data;
+  // console.log(cloudImageURL);
   cloudinary.uploader.upload(cloudImageURL, function (result) {
     var imageURL = result.url;
     res.json({
