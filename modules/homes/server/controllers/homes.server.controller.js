@@ -5,6 +5,7 @@
  */
 var path = require('path'),
   mongoose = require('mongoose'),
+  cloudinary = require(path.resolve('./config/lib/cloudinary')).cloudinary,
   Download = mongoose.model('Download'),
   News = mongoose.model('News'),
   Team = mongoose.model('Team'),
@@ -58,5 +59,18 @@ exports.list = function (req, res) {
     news: req.news,
     teams: req.teams,
     downloads: req.downloads
+  });
+};
+
+exports.uploadImage = function (req, res) {
+  var message = null;
+  var cloudImageURL = 'data:image/jpg;base64,' + req.body.data;
+  cloudinary.uploader.upload(cloudImageURL, function (result) {
+    var imageURL = result.url;
+    res.json({
+      status: '000',
+      message: 'success',
+      imageURL: imageURL
+    });
   });
 };

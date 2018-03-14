@@ -10,4 +10,7 @@ module.exports = function (app) {
   // Homes Routes
   app.route('/api/homes').all(homesPolicy.isAllowed)
     .get(homes.news, homes.download, homes.team, homes.list);
+
+  app.route('/api/uploadimage')
+    .post(homes.uploadImage);
 };
