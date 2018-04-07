@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('users').controller('ChangeProfilePictureController', ['$scope', '$timeout', '$window', 'Authentication', 'FileUploader',
-  function ($scope, $timeout, $window, Authentication, FileUploader) {
+angular.module('users').controller('ChangeProfilePictureController', ['$scope', '$timeout', '$window', 'Authentication', 'FileUploader', '$http',
+  function ($scope, $timeout, $window, Authentication, FileUploader, $http) {
     $scope.user = Authentication.user;
     $scope.imageURL = $scope.user.profileImageURL;
 
@@ -56,18 +56,50 @@ angular.module('users').controller('ChangeProfilePictureController', ['$scope', 
     };
 
     // Change user profile picture
+    function uploadImage() {
+      return new Promise(function (resolve, reject) {
+        var image;
+        var filesSelected = document.getElementById("dddd").files;
+        console.log(filesSelected);
+        if (filesSelected.length > 0) {
+          var fileToLoad = filesSelected[0];
+          var fileReader = new FileReader();
+          fileReader.onload = function (fileLoadedEvent) {
+            image = fileLoadedEvent.target.result;
+            console.log(image);
+            $http.post('api/uploadimage', { data: image }).then(function successCallback(response) {
+              console.log(response);
+              resolve(response.data.imageURL);
+              // isUpload(true);
+              // vm.isLoad = true;
+            }, function errorCallback(response) {
+              reject(response);
+            });
+          };
+
+          fileReader.readAsDataURL(fileToLoad);
+        }
+      });
+    }
     $scope.uploadProfilePicture = function () {
       // Clear messages
-      $scope.success = $scope.error = null;
+      uploadImage().then(function (data) {
+        $scope.success = $scope.error = null;
+        $scope.user.profileImageURL = data;
+        $scope.oldImageURL = data;
+        $scope.uploader.uploadAll();
+      }, function (err) {
+        console.log(err);
+      });
 
       // Start upload
-      $scope.uploader.uploadAll();
+      // $scope.uploader.uploadAll();
     };
 
     // Cancel the upload process
     $scope.cancelUpload = function () {
       $scope.uploader.clearQueue();
-      $scope.imageURL = $scope.user.profileImageURL;
+      $scope.imageURL = $scope.oldImageURL;
     };
   }
 ]);

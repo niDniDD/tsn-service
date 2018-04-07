@@ -5,11 +5,25 @@
   <div class="col-md-12">
     <form name="vm.form.teamForm" class="form-horizontal" ng-submit="vm.save(vm.form.teamForm.$valid)" novalidate>
       <fieldset>
+        <!-- <div class="form-group text-center">
+          <img ng-src="{{imageURL}}" class="img-thumbnail user-profile-picture">
+        </div>
+        <div class="text-center form-group" ng-hide="uploader.queue.length">
+          <span class="btn btn-default btn-file">
+            Select Image
+            <input type="file" id="dddd" nv-file-select uploader="uploader">
+          </span>
+        </div> -->
         <div class="form-group" style="text-align:center;">
-          <!-- <label class="control-label" for="image">Profile Image</label> -->
-          <img src="{{vm.imageShow()}}" alt="" style="width:10em; height:10em;">
-          <input type="file" id="dddd" ng-model="vm.team.image" onchange="angular.element(this).scope().fileNameChanged(this)">
-          <button type="button" ng-click="vm.uploadImage(vm.team.image)">Upload</button>
+          <img src="{{vm.imageShow()}}" class="img-thumbnail user-profile-picture" style="width:10em; height:10em;">
+        </div>
+        <div class="form-group" style="text-align:center;">
+          <span class="btn btn-default btn-file">
+            Select Image
+            <input type="file" id="dddd" onchange="angular.element(this).scope().uploadImage()">
+          </span>
+          <!-- <input type="file" id="dddd" ng-model="vm.team.image" onchange="angular.element(this).scope().fileNameChanged(this)">
+          <button type="button" ng-click="vm.uploadImage(vm.team.image)">Upload</button> -->
         </div>
         <div class="form-group" show-errors>
           <label class="control-label" for="firstname">First Name</label>

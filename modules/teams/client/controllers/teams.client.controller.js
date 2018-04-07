@@ -17,7 +17,7 @@
     vm.remove = remove;
     vm.save = save;
     vm.imageShow = imageShow;
-    vm.uploadImage = uploadImage;
+    // vm.uploadImage = uploadImage;
     // vm.isLoad = true;
     // $scope.isCheckUpload = true;
     // $scope.isUpload(true);
@@ -41,11 +41,12 @@
         namesArr.push(files[i].name);
       }
       vm.team.image = namesArr[0];
+      console.log('ssss');
       // isUpload(false);
       // vm.isLoad = false;
     };
 
-    function uploadImage(img) {
+    $scope.uploadImage = function (img) {
       var image;
       var filesSelected = document.getElementById("dddd").files;
       if (filesSelected.length > 0) {
@@ -66,7 +67,7 @@
 
         fileReader.readAsDataURL(fileToLoad);
       }
-    }
+    };
     // Save Team
     function save(isValid) {
       if (!isValid) {
