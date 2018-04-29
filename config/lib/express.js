@@ -86,8 +86,8 @@ module.exports.initMiddleware = function (app) {
   }
 
   // Request body parsing middleware should be above methodOverride
-  var jsonParser       = bodyParser.json({limit:1024*1024*20, type:'application/json'});
-  var urlencodedParser = bodyParser.urlencoded({ extended:true,limit:1024*1024*20,type:'application/x-www-form-urlencoding' })
+  var jsonParser = bodyParser.json({ limit:1024*1024*20, type:'application/json' });
+  var urlencodedParser = bodyParser.urlencoded({ extended:true,limit:1024*1024*20,type:'application/x-www-form-urlencoding' });
 
   app.use(jsonParser);
   app.use(urlencodedParser);

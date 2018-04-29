@@ -59,7 +59,7 @@ angular.module('users').controller('ChangeProfilePictureController', ['$scope', 
     function uploadImage() {
       return new Promise(function (resolve, reject) {
         var image;
-        var filesSelected = document.getElementById("dddd").files;
+        var filesSelected = document.getElementById('dddd').files;
         console.log(filesSelected);
         if (filesSelected.length > 0) {
           var fileToLoad = filesSelected[0];

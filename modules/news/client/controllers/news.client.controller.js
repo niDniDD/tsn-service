@@ -28,7 +28,7 @@
     }
     $scope.uploadImage = function (img) {
       var image;
-      var filesSelected = document.getElementById("dddd").files;
+      var filesSelected = document.getElementById('dddd').files;
       if (filesSelected.length > 0) {
         var fileToLoad = filesSelected[0];
         var fileReader = new FileReader();
