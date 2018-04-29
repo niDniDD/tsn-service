@@ -2,7 +2,29 @@
   <div class="page-header">
     <h1>Downloads</h1>
   </div>
-  <div class="list-group">
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Topic</th>
+          <th>Url</th>
+          <th>created</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="download in vm.downloads" ng-click="vm.viewDetail(download._id)">
+          <td>{{$index+1}}</td>
+          <td  style="  text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;">{{download.title}}</td>
+          <td>{{download.url}}</td>
+          <td>{{download.created | date:'dd/MM/yyyy'}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- <div class="list-group">
     <a ng-repeat="download in vm.downloads"
        ui-sref="downloads.view({ downloadId: download._id })"
        class="list-group-item">
@@ -15,8 +37,9 @@
       </small>
       <h4 class="list-group-item-heading" ng-bind="download.name"></h4>
     </a>
-  </div>
+  </div> -->
   <div class="alert alert-warning text-center" ng-if="vm.downloads.$resolved && !vm.downloads.length">
-    No Downloads yet, why don't you <a ui-sref="downloads.create">create one</a>?
+    No Downloads yet, why don't you
+    <a ui-sref="downloads.create">create one</a>?
   </div>
 </section>

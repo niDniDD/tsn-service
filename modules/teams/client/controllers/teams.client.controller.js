@@ -83,7 +83,7 @@
       }
 
       function successCallback(res) {
-        $state.go('teams.view', {
+        $state.go('teams.list', {
           teamId: res._id
         });
       }

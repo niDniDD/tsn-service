@@ -40,7 +40,7 @@
       }
 
       function successCallback(res) {
-        $state.go('downloads.view', {
+        $state.go('downloads.list', {
           downloadId: res._id
         });
       }

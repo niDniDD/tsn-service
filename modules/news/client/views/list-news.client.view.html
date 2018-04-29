@@ -2,7 +2,36 @@
   <div class="page-header">
     <h1>News</h1>
   </div>
-  <div class="list-group">
+  <!-- <div class="media" ng-repeat="news in vm.news">
+    <div class="media-left">
+      <a href="#">
+        <img class="media-object" src="{{news.image}}" alt="{{news.name}}">
+      </a>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">{{news.name}}</h4>
+      <div>
+        {{vm.showWord(news.detail)}}
+      </div>
+    </div>
+  </div> -->
+  <div class="row">
+    <div class="col-sm-6 col-md-4" ng-repeat="news in vm.news">
+      <div class="thumbnail">
+        <img src="{{news.image}}" style="width:100%">
+        <div class="caption">
+          <h3 style="  text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;">{{news.name}}</h3>
+          <p >{{vm.showWord(news.detail)}}</p>
+          <p>
+            <button type="button" class="btn btn-primary btn-block" ng-click="vm.viewDetail(news._id)">More</button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="list-group">
     <a ng-repeat="news in vm.news"
        ui-sref="news.view({ newsId: news._id })"
        class="list-group-item">
@@ -15,8 +44,9 @@
       </small>
       <h4 class="list-group-item-heading" ng-bind="news.name"></h4>
     </a>
-  </div>
+  </div> -->
   <div class="alert alert-warning text-center" ng-if="vm.news.$resolved && !vm.news.length">
-    No News yet, why don't you <a ui-sref="news.create">create one</a>?
+    No News yet, why don't you
+    <a ui-sref="news.create">create one</a>?
   </div>
 </section>

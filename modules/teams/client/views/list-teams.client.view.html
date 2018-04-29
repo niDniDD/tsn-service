@@ -2,7 +2,29 @@
   <div class="page-header">
     <h1>Teams</h1>
   </div>
-  <div class="list-group">
+  <div class="row">
+    <div class="col-sm-4 col-md-3" ng-repeat="team in vm.teams" ng-click="vm.viewDetail(team._id)">
+      <div class="thumbnail">
+        <img src="{{team.image}}" style="height: 20em;">
+        <div class="caption">
+          <h3 style="  text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;">{{team.firstname + ' ' + team.lastname + ' ' + '(' + team.nickname + ')'}}</h3>
+          <p>
+            <span class="glyphicon glyphicon-envelope" aria-hidden="true" style="margin-right: 10px;"></span>
+            {{team.email}}
+          </p>
+          <p>
+            <span class="glyphicon glyphicon-earphone" aria-hidden="true" style="margin-right: 10px;"></span>
+            {{team.email}}
+          </p>
+          <p style="padding-left: -2px;">
+            <img src="http://ai-catcher.com/wp-content/uploads/icon_10.png" width="20em" style="margin-right: 10px;">{{team.line}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="list-group">
     <a ng-repeat="team in vm.teams"
        ui-sref="teams.view({ teamId: team._id })"
        class="list-group-item">
@@ -15,8 +37,22 @@
       </small>
       <h4 class="list-group-item-heading" ng-bind="team.name"></h4>
     </a>
-  </div>
+  </div> -->
   <div class="alert alert-warning text-center" ng-if="vm.teams.$resolved && !vm.teams.length">
-    No Teams yet, why don't you <a ui-sref="teams.create">create one</a>?
+    No Teams yet, why don't you
+    <a ui-sref="teams.create">create one</a>?
   </div>
 </section>
+
+<!-- <div class="jumbotron text-center" style="margin-top: 100px;">
+    <div class="row" style="padding: 100px 0px 100px 0px;">
+      <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
+        <h5 style="font-size: 65px;  color: gray">TSN</h5>
+      </div>
+      <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
+          <h5 style="font-size: 50px; color: gray">TSN Human System</h5>
+        </div>
+    </div>
+  </div> -->
+
+  <!-- <img alt="MEAN.JS" class="img-responsive text-center" src="modules/core/client/img/brand/logo.png" /> -->
