@@ -16,7 +16,7 @@ var path = require('path'),
  * List of Homes
  */
 exports.news = function (req, res, next) {
-  News.find().sort('-created').populate('user', 'displayName').exec(function (err, news) {
+  News.find().sort('-created').populate('user', 'displayName').limit(3).exec(function (err, news) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
