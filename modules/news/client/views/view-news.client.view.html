@@ -2,16 +2,17 @@
   <div class="page-header">
     <h1 ng-bind="vm.news.name"></h1>
   </div>
-  <div class="text-center">
-    <img src="{{vm.news.image}}" width="50%">
+  <div class="col-md-12 text-center" style="margin-bottom: 20px;">
+    <div class="col-md-4" ng-repeat="img in vm.news.images">
+      <img src="{{img}}" width="100%">
+    </div>
   </div>
-  <div style="margin-top: 20px;">
+
+  <div>
     <p ng-bind="vm.news.detail"></p>
   </div>
-  <div class="pull-right"
-       ng-show="vm.news.isCurrentUserOwner">
-    <a class="btn btn-primary"
-       ui-sref="news.edit({ newsId: vm.news._id })">
+  <div class="pull-right" ng-show="vm.news.isCurrentUserOwner">
+    <a class="btn btn-primary" ui-sref="news.edit({ newsId: vm.news._id })">
       <i class="glyphicon glyphicon-edit"></i>
     </a>
     <a class="btn btn-primary" ng-click="vm.remove()">
@@ -23,8 +24,7 @@
       Posted on
       <span ng-bind="vm.news.created | date:'mediumDate'"></span>
       by
-      <span ng-if="vm.news.user"
-            ng-bind="vm.news.user.displayName"></span>
+      <span ng-if="vm.news.user" ng-bind="vm.news.user.displayName"></span>
       <span ng-if="!vm.news.user">Deleted User</span>
     </em>
   </small>

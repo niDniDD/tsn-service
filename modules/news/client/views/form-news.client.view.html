@@ -2,42 +2,50 @@
   <div class="page-header">
     <h1>{{vm.news._id ? 'Edit News' : 'New News'}}</h1>
   </div>
-  <div class="col-md-12">
-    <form name="vm.form.newsForm" class="form-horizontal" ng-submit="vm.save(vm.form.newsForm.$valid)" novalidate>
-      <fieldset>
-        <div class="form-group" style="text-align:center;">
-          <img src="{{vm.imageShow()}}" class="img-thumbnail" style="height:20em; object-fit: cover;">
-        </div>
-        <div class="form-group" style="text-align:center;">
-          <span class="btn btn-default btn-file">
-            Select Image
-            <input type="file" id="dddd" onchange="angular.element(this).scope().uploadImage()">
-          </span>
-          <!-- <input type="file" id="dddd" ng-model="vm.team.image" onchange="angular.element(this).scope().fileNameChanged(this)">
-              <button type="button" ng-click="vm.uploadImage(vm.team.image)">Upload</button> -->
-        </div>
-        <div class="form-group" show-errors>
-          <label class="control-label" for="name">Name</label>
-          <input name="name" type="text" ng-model="vm.news.name" id="name" class="form-control" placeholder="Name" required>
-          <div ng-messages="vm.form.newsForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">News name is required.</p>
+  <form name="vm.form.newsForm" class="form-horizontal" ng-submit="vm.save(vm.form.newsForm.$valid)" novalidate>
+    <fieldset>
+      <div class="col-md-12">
+        <div class="col-md-4" class="form-group" style="text-align:center;" ng-repeat="news in vm.news.images track by $index">
+          <img src="{{news}}" class="img-thumbnail" style="height:20em; width: 20em; object-fit: cover;">
+          <div class="col-md-12" style="text-align:center; padding-top: 20px;">
+            <span class="btn btn-default btn-file" style="border-top: 20px;">
+              Add Image
+              <input type="file" id="dddd{{$index}}" ng-click="setindex($index)" onchange="angular.element(this).scope().uploadImage()">
+            </span>
           </div>
         </div>
-        <div class="form-group" show-errors>
-          <label class="control-label" for="name">Detail</label>
-          <input name="detail" type="text" ng-model="vm.news.detail" id="detail" class="form-control" placeholder="Detail">
+      </div>
+
+      <!-- <div class="co-md-12" style="text-align:center;">
+        <span class="btn btn-default btn-file" style="border-top: 20px;">
+          Select Image
+          <input type="file" id="dddd" onchange="angular.element(this).scope().uploadImage()">
+        </span>
+        <input type="file" id="dddd" ng-model="vm.team.image" onchange="angular.element(this).scope().fileNameChanged(this)">
+                    <button type="button" ng-click="vm.uploadImage(vm.team.image)">Upload</button>
+      </div> -->
+
+      <div class="form-group" show-errors>
+        <label class="control-label" for="name">Name</label>
+        <input name="name" type="text" ng-model="vm.news.name" id="name" class="form-control" placeholder="Name" required>
+        <div ng-messages="vm.form.newsForm.name.$error" role="alert">
+          <p class="help-block error-text" ng-message="required">News name is required.</p>
         </div>
-        <!-- <div class="form-group" show-errors>
+      </div>
+      <div class="form-group" show-errors>
+        <label class="control-label" for="name">Detail</label>
+        <input name="detail" type="text" ng-model="vm.news.detail" id="detail" class="form-control" placeholder="Detail">
+      </div>
+      <!-- <div class="form-group" show-errors>
           <label class="control-label" for="name">Image</label>
           <input name="image" type="text" ng-model="vm.news.image" id="image" class="form-control" placeholder="Image">
         </div> -->
-        <div class="form-group">
-          <button type="submit" class="btn btn-default">{{vm.news._id ? 'Update' : 'Create'}}</button>
-        </div>
-        <div ng-show="vm.error" class="text-danger">
-          <strong ng-bind="vm.error"></strong>
-        </div>
-      </fieldset>
-    </form>
-  </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-default">{{vm.news._id ? 'Update' : 'Create'}}</button>
+      </div>
+      <div ng-show="vm.error" class="text-danger">
+        <strong ng-bind="vm.error"></strong>
+      </div>
+    </fieldset>
+  </form>
 </section>

@@ -18,6 +18,7 @@
     vm.remove = remove;
     vm.save = save;
     vm.imageShow = imageShow;
+    vm.news.images = vm.news.images ? vm.news.images : ['modules/news/client/img/add.jpg', 'modules/news/client/img/add.jpg', 'modules/news/client/img/add.jpg'];
     // vm.uploadImage = uploadImage;
     // vm.isLoad = true;
     // $scope.isCheckUpload = true;
@@ -26,9 +27,14 @@
       var img = vm.news.image ? vm.news.image : 'https://www.metatube.com/assets/metatube/video/img/Upload.svg';
       return img;
     }
-    $scope.uploadImage = function (img) {
+
+    $scope.setindex = function(i){
+      $scope.index = i;
+    };
+
+    $scope.uploadImage = function (i) {
       var image;
-      var filesSelected = document.getElementById('dddd').files;
+      var filesSelected = document.getElementById('dddd'+$scope.index).files;
       if (filesSelected.length > 0) {
         var fileToLoad = filesSelected[0];
         var fileReader = new FileReader();
@@ -37,7 +43,7 @@
           // console.log(image);
           $http.post('api/uploadimage', { data: image }).then(function successCallback(response) {
             console.log(response);
-            vm.news.image = response.data.imageURL;
+            vm.news.images[$scope.index] = response.data.imageURL;
             // isUpload(true);
             // vm.isLoad = true;
           }, function errorCallback(response) {

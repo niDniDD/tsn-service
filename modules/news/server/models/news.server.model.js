@@ -19,9 +19,9 @@ var NewsSchema = new Schema({
   detail: {
     type: String
   },
-  image: {
+  images: [{
     type: String
-  },
+  }],
   created: {
     type: Date,
     default: Date.now

@@ -51,7 +51,8 @@ describe('News CRUD tests', function () {
     // Save a user to the test db and create new News
     user.save(function () {
       news = {
-        name: 'News name'
+        name: 'News name',
+        images: ['url', 'url2s']
       };
 
       done();
@@ -95,6 +96,7 @@ describe('News CRUD tests', function () {
                 // Set assertions
                 (news[0].user._id).should.equal(userId);
                 (news[0].name).should.match('News name');
+                (news[0].images.length).should.match(2);
 
                 // Call the assertion callback
                 done();
