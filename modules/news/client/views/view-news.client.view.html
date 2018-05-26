@@ -3,7 +3,7 @@
     <h1 ng-bind="vm.news.name"></h1>
   </div>
   <div class="col-md-12 text-center" style="margin-bottom: 20px;">
-    <div class="col-md-4" ng-repeat="img in vm.news.images">
+    <div class="col-md-4" ng-repeat="img in vm.news.images track by $index">
       <img src="{{img}}" width="100%">
     </div>
   </div>
